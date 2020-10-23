@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.BoardMapper">
+    <select id="boardCount" resultType="int" >
+        SELECT
+        	COUNT(*)
+        FROM BOARD
+    </select>
+    
+    <select id="boardList" resultType="com.example.demo.domain.BoardVO">
+        SELECT
+            *
+        FROM BOARD
+        WHERE
+        	B_REMV_FLAG = 'N'
+    </select>
+
+    <select id="boardDetail" parameterType="int" resultType="com.example.demo.domain.BoardVO">
+        SELECT
+            *
+        FROM BOARD
+        WHERE
+            BoardNum = #{boardNum}
+    </select>
+
+    <insert id="boardInsert" parameterType="com.example.demo.domain.BoardVO" useGeneratedKeys="true" keyProperty="idx">
+        INSERT	INTO
+        BOARD	(TITLE, CONTENT, WRITER, BOARD_PASS, REG_DATE)
+        VALUES	(#{title}, #{content}, #{writer}, #{board_pass}, now())
+        
+    </insert>
+
+    <update id="boardUpdate" parameterType="com.example.demo.domain.BoardVO">
+        UPDATE	BOARD
+        SET
+        <if test="title != null">
+            Title = #{title}
+        </if>
+        <if test="title != null and content != null">  </if>,
+        <if test="content != null">
+            CONTENT = #{content}
+        </if>
+        WHERE	BoardNum = #{boardNum}
+    </update>
+
+	<update id="updateReadCnt" parameterType="int">
+		UPDATE	BOARD
+		SET		read_cnt = read_cnt + 1
+		WHERE	BoardNum = #{boardNum}
+	</update>
+    
+    <delete id="boardDelete" parameterType="int">
+    	UPDATE	BOARD
+    	SET 	B_REMV_FLAG = 'Y'
+    	WHERE	BoardNum = #{boardNum}
+    </delete>
+
+	<insert id="fileInsert" parameterType="com.example.demo.domain.FileVO">
+	    INSERT	INTO
+	    FILES	(BOARDNUM, SAVEFILENAME, REALFILENAME, FILEURL)
+	    VALUES	(#{boardNum}, #{saveFileName}, #{realFileName}, #{fileUrl})
+	</insert>
+	
+	<select id="fileDetail" parameterType="int" resultType="com.example.demo.domain.FileVO">
+	    SELECT
+	        *
+	    FROM FILES
+	    WHERE
+	        FILENUM = #{fileNum}
+	</select>
+</mapper>
