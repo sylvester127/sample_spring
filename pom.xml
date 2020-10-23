@@ -64,6 +64,11 @@
             <version>2.5</version>
         </dependency>
         <!--Multipart File Up&Download -->
+        <!-- Spring boot Devtools -->
+        <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-devtools</artifactId>
+	    </dependency>
     </dependencies>
 
     <build>
