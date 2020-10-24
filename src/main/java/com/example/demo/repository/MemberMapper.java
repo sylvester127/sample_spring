@@ -7,7 +7,7 @@ import com.example.demo.domain.MemberVO;
 
 @Repository
 public interface MemberMapper {
-    public int insertMember(MemberVO member);
+    public int joinMember(MemberVO member);
     
 	public MemberVO checkMember(@Param("id") String id, @Param("pw") String pw);
 }

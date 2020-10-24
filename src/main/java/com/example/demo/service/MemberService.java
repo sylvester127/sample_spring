@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,15 +14,11 @@ public class MemberService {
 	@Autowired
 	MemberMapper mapper;
 
-//	@Autowired
-//	SqlSessionTemplate sqlSessionTemplate;
-
-	public int insertMember(MemberVO member) {
+	public int joinMember(MemberVO member) {
 		int result = 0;
-//		MemberMapper mapper = sqlSessionTemplate.getMapper(MemberMapper.class);
 		
 		try {
-			result = mapper.insertMember(member);
+			result = mapper.joinMember(member);
 		} catch (Exception e) {
 			e.printStackTrace(); // UserId not null 관련 예외(ErrMsg) 발생 시, 예외 처리 필요
 		}
@@ -33,7 +28,6 @@ public class MemberService {
 	public boolean checkMember(String id, String pw) {
 		boolean result = false;
 
-//		MemberMapper mapper = sqlSessionTemplate.getMapper(MemberMapper.class);
 		if(mapper.checkMember(id, pw) != null) {
 			result = true;
 		}

@@ -25,7 +25,7 @@ public class MemberController {
 
 	@PostMapping("join")
 	public String join(MemberVO member, Model model) {
-		int result = service.insertMember(member);
+		int result = service.joinMember(member);
 		
 		if (result == 0) {
 			model.addAttribute("message", "duplicated id");
@@ -45,9 +45,9 @@ public class MemberController {
 		String path = "member/login";
 		
 		// 로그인 성공
-		if (service.checkMember(id, pw)) {		
-			session.setAttribute("userId", id);
-			path = "redirect:list";			
+		if (service.checkMember(id, pw)) {
+			session.setAttribute("id", id);
+			path = "redirect:notices";			
 		}
 		
 		return path;
@@ -57,7 +57,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "member/login";
+		return "redirect:login";
 	}
 
 }
