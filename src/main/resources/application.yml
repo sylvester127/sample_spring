@@ -10,8 +10,6 @@ spring:  h2:    console:      enabled: true      path: /h2-console    profi
   mvc:
     view:
       prefix: /WEB-INF/jsp/
-      suffix: .jsp
-
-
+      suffix: .jsp    static-path-pattern: /static/**    resources:    static-locations: classpath:/static/    add-mappings: true
 server:
   port: 8080
