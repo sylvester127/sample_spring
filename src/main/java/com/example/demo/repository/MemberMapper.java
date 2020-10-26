@@ -9,5 +9,5 @@ import com.example.demo.domain.MemberVO;
 public interface MemberMapper {
     public int joinMember(MemberVO member);
     
-	public MemberVO checkMember(@Param("id") String id, @Param("pw") String pw);
+    public MemberVO checkMember(@Param("id") String id, @Param("password") String password);
 }

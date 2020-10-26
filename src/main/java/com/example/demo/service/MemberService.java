@@ -16,19 +16,25 @@ public class MemberService {
 
 	public int joinMember(MemberVO member) {
 		int result = 0;
+		String id = "";
+		String password = "";
 		
-		try {
+		id = member.getId();
+		password = member.getPassword();
+		
+		if(!id.equals("") && !password.equals("")) {
 			result = mapper.joinMember(member);
-		} catch (Exception e) {
-			e.printStackTrace(); // UserId not null 관련 예외(ErrMsg) 발생 시, 예외 처리 필요
+		} else {
+			result = -1;
 		}
+		
 		return result;
 	}
 
-	public boolean checkMember(String id, String pw) {
+	public boolean checkMember(String id, String password) {
 		boolean result = false;
 
-		if(mapper.checkMember(id, pw) != null) {
+		if(mapper.checkMember(id, password) != null) {
 			result = true;
 		}
 		

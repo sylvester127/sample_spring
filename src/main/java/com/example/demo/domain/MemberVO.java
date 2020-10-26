@@ -1,21 +1,21 @@
 package com.example.demo.domain;
 
 public class MemberVO {
-    private String userId;
+    private String id;
     private String password;
     private String name;
     private String email;
-    private int birthday;
+    private String birthday;
     private String address;
     private String phone;
     private String sex;
     private String U_REMV_FLAG;
     
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String userId) {
+		this.id = userId;
 	}
 	
 	public String getPassword() {
@@ -39,10 +39,10 @@ public class MemberVO {
 		this.email = email;
 	}
 	
-	public int getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(int birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	
@@ -75,14 +75,14 @@ public class MemberVO {
 	}
 	
 	public String toString() {
-		return "userId:"+ userId +
-				"password:" + password +
-				"name:" + name +
-				"email:" + email +
-				"birthday:" + birthday +
-				"address:" + address +
-				"phone:" + phone +
-				"sex:" + sex +
+		return "id:"+ id + "\n" +
+				"password:" + password + "\n" +
+				"name:" + name + "\n" +
+				"email:" + email + "\n" +
+				"birthday:" + birthday + "\n" +
+				"address:" + address + "\n" +
+				"phone:" + phone + "\n" +
+				"sex:" + sex + "\n" +
 				"U_REMV_FLAG:" + U_REMV_FLAG;
 	}
 }

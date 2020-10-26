@@ -3,22 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.repository.MemberMapper">
-	<insert id = "insertMember" parameterType = "com.example.demo.domain.MemberVO">
+	<insert id = "joinMember" parameterType = "com.example.demo.domain.MemberVO">
 		INSERT	INTO
 		USER	(USERID, PASSWORD, NAME, EMAIL, BIRTHDAY, ADDRESS, PHONE, SEX, U_REMV_FLAG)
-		VALUES	(#{userId}, #{password}, #{name}, #{email}, #{birthday}, #{address}, #{phone}, #{sex}, 'N')
+		VALUES	(#{id}, #{password}, #{name}, #{email}, #{birthday}, #{address}, #{phone}, #{sex}, 'N')
 	</insert>
-	
-	<select id="loginMember" parameterType="com.example.demo.domain.MemberVO" resultType="com.example.demo.domain.MemberVO">
-		SELECT 
-			USERID
-		 	,PASSWORD
-		 FROM
-		 	USER
-		 WHERE
-		 	USERID = #{userId} AND
-		 	PASSWORD = #{password}
-	</select>
 	
 	<select id="checkMember" resultType="com.example.demo.domain.MemberVO">
 		SELECT
@@ -28,6 +17,6 @@
 			USER
 		WHERE
 			USERID = #{id} AND
-		 	PASSWORD = #{pw}
+		 	PASSWORD = #{password}
 	</select>
 </mapper>
