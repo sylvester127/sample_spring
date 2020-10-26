@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,17 +22,18 @@ import com.example.demo.service.MemberService;
 
 @Controller
 public class MemberController {
-
+	
 	@Autowired
 	MemberService service;
-
+	
 	@GetMapping("")
 	public String index() {
 		return "member/login";
 	}
-
+	
 	@GetMapping("members")
 	public String join(Model model, HttpServletRequest request) {
+		// members에서 POST의 request 객체를 받아서 모델에 넣어준다.
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		
 		if(null != inputFlashMap) {
@@ -56,22 +58,24 @@ public class MemberController {
 		
 		return path;
 	}
-
-	@PostMapping("members/{id}")
+	
+	// 보안의 용의성 때문에 GET보다는 POST로 처리한다.
+	// 더 좋은 방법은 SSL(https)로 처리하는 것이다.
+	@PostMapping("members/member")
 	public String login(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "pw", required = false) String pw, HttpSession session) {
+			@RequestParam(value = "password", required = false) String password, HttpSession session) {
 		String path = "member/login";
 		
-		// 로그인 성공
-		if (service.checkMember(id, pw)) {
+		// DB에서 아이디, 패스워드에 맞는 결과가 있다면 성공
+		if (service.checkMember(id, password)) {
 			session.setAttribute("id", id);
-			path = "redirect:notices";			
+			path = "redirect:../notices";			
 		}
 		
 		return path;
 	}
-
-	@GetMapping("members/{id}")
+	
+	@DeleteMapping("members/{id}/session")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		

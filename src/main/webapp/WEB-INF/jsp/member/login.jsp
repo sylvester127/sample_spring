@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=devide-width, intial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="/static/js/login.js"></script>
   <title>로그인</title>
 </head>
 <body>
@@ -21,7 +19,7 @@
 	<section class="container h-75">
 		<h1>로그인</h1>
     	
-	    <form action="/members/${id}" method="POST">
+	    <form action="/members/member" method="POST">
 	    	<div class="form-group col-4">
 				<label for="id">아이디 : </label>
 				<input type="text" class="form-control" id="id" name="id">
