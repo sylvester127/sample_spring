@@ -2,28 +2,28 @@ package com.example.demo.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.BoardVO;
+import com.example.demo.domain.NoticeVO;
 import com.example.demo.domain.FileVO;
-import com.example.demo.domain.UserVO;
+import com.example.demo.domain.MemberVO;
 
 import java.util.List;
 
 @Repository
-public interface BoardMapper {  
+public interface NoticeMapper {  
     //게시글 개수  
     public int boardCount() throws Exception;
     
     //게시글 목록  
-    public List<BoardVO> boardList() throws Exception;
+    public List<NoticeVO> boardList() throws Exception;
     
     //게시글 상세
-    public BoardVO boardDetail(int boardNum) throws Exception;
+    public NoticeVO boardDetail(int boardNum) throws Exception;
     
     //게시글 작성  
-    public int boardInsert(BoardVO board) throws Exception;
+    public int boardInsert(NoticeVO board) throws Exception;
     
     //게시글 수정  
-    public int boardUpdate(BoardVO board) throws Exception;
+    public int boardUpdate(NoticeVO board) throws Exception;
     
     //게시글 조회수 카운트
 	public int updateReadCnt(int boardNum);

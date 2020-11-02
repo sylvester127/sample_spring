@@ -2,7 +2,7 @@ package com.example.demo.domain;
 
 import java.util.Date;
 
-public class BoardVO {
+public class NoticeVO {
  
     private int boardNum;
     private Date reg_date;

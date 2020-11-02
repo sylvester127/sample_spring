@@ -1,19 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.BoardVO;
-import com.example.demo.domain.FileVO;
-import com.example.demo.domain.UserVO;
-import com.example.demo.repository.BoardMapper;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,52 +10,63 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.domain.FileVO;
+import com.example.demo.domain.NoticeVO;
+import com.example.demo.repository.NoticeMapper;
+
 @Service
 @Transactional
-public class BoardService {
+public class NoticeService {
 
     @Autowired
-	BoardMapper boardMapper;
+	NoticeMapper mapper;
 
-    public List<BoardVO> boardListService() throws Exception{
-        return boardMapper.boardList();
+    public List<NoticeVO> getList() throws Exception{
+        return mapper.boardList();
     }
     
-    public BoardVO boardDetailService(int boardNum) throws Exception{
-        return boardMapper.boardDetail(boardNum);
+    public NoticeVO getNotice(int noticeNum) throws Exception{
+        return mapper.boardDetail(noticeNum);
     }
     
-    public int boardInsertService(BoardVO board, HttpServletRequest request) throws Exception{
-    	int val = boardMapper.boardInsert(board);
-//    	System.out.println("Here~!! = " + board.getBoardNum());
+    public int addNotice(NoticeVO notice, HttpServletRequest request) throws Exception{
+    	int result = mapper.boardInsert(notice);
     	
-        board.setWriter(request.getParameter("writer"));
-        board.setTitle(request.getParameter("title"));
-        board.setContent(request.getParameter("content"));
-        board.setBoard_pass(request.getParameter("board_pass"));
-        board.setB_REMV_FLAG(request.getParameter("B_RemvFlag"));
+        notice.setWriter(request.getParameter("writer"));
+        notice.setTitle(request.getParameter("title"));
+        notice.setContent(request.getParameter("content"));
+        notice.setBoard_pass(request.getParameter("board_pass"));
+        notice.setB_REMV_FLAG(request.getParameter("B_RemvFlag"));
     	
-        return val;
+        return result;
     }
     
-    public int boardUpdateService(BoardVO board, HttpServletRequest request) throws Exception{
+    public int regNotice(NoticeVO board, HttpServletRequest request) throws Exception{
     	board.setTitle(request.getParameter("title"));
         board.setContent(request.getParameter("content"));
         board.setBoardNum(Integer.parseInt(request.getParameter("boardNum")));
-        return boardMapper.boardUpdate(board);
+        return mapper.boardUpdate(board);
     }
     
     public int updateViewCntService(int boardNum) throws Exception{
-    	return boardMapper.updateReadCnt(boardNum);
+    	return mapper.updateReadCnt(boardNum);
     }
     
     public int boardDeleteService(int boardNum) throws Exception{
-        return boardMapper.boardDelete(boardNum);
+        return mapper.boardDelete(boardNum);
     }
     
 
     //파일 업로드
-    public int fileInsertService(BoardVO board, FileVO file, @RequestPart MultipartFile realfile) throws Exception{
+    public int fileInsertService(NoticeVO board, FileVO file, @RequestPart MultipartFile realfile) throws Exception{
     	String fileName = realfile.getOriginalFilename(); 
 	    String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase(); 
 	    File destinationFile; 
@@ -89,13 +86,13 @@ public class BoardService {
         file.setRealFileName(fileName);
         file.setFileUrl(fileUrl);
 
-        return boardMapper.fileInsert(file);
+        return mapper.fileInsert(file);
     }
     
     //파일 다운로드
     public FileVO fileDetailService(int boardNum, HttpServletRequest request, HttpServletResponse response) throws Exception{
     	request.setCharacterEncoding("UTF-8");
-        FileVO fileVO = boardMapper.fileDetail(boardNum);
+        FileVO fileVO = mapper.fileDetail(boardNum);
     	
     	//파일 업로드된 경로 
         try{
@@ -158,6 +155,6 @@ public class BoardService {
 //            System.out.println("ERROR : " + e.getMessage());
         }
     	
-        return boardMapper.fileDetail(boardNum);
+        return mapper.fileDetail(boardNum);
     }
 }
