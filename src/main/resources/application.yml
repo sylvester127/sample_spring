@@ -10,6 +10,6 @@ spring:  h2:    console:      enabled: true      path: /h2-console    profi
   mvc:
     view:
       prefix: /WEB-INF/jsp/
-      suffix: .jsp    static-path-pattern: /static/**    resources:    static-locations: classpath:/static/    add-mappings: true
+      suffix: .jsp    static-path-pattern: /static/**    resources:    static-locations: classpath:/static/    add-mappings: true      http:    multipart:      max-file-size: 20MB      max-request-size: 20MB
 server:
   port: 8080
