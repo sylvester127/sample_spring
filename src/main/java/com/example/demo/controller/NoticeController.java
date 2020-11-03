@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.FileVO;
@@ -42,16 +44,13 @@ public class NoticeController {
 		return "notice/reg";
 	}
 
+	@ResponseBody
 	@PostMapping("/reg")
-	private String reg(NoticeVO notice, FileVO file, HttpServletRequest request, @RequestPart MultipartFile realfile)
+	private int reg(NoticeVO notice, @RequestParam("files") MultipartFile[] files)
 			throws Exception {
-		if (file.isEmpty()) { // 업로드할 파일이 없을 시
-			service.addNotice(notice, request); // 게시글 insert
-		} else {
-			service.addNotice(notice, request); // 게시글 insert
-			service.fileInsertService(notice, file, realfile); // 파일 insert
-		}
-		return "redirect:/list";
+		int result = service.addNotice(notice, files);		
+		
+		return result;
 	}
 
 	@GetMapping("{boardNum}")
