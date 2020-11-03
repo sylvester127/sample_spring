@@ -69,9 +69,9 @@
 					<li class="page-item"><a class="page-link" href="#">Next</a></li>
 				</ul>
 			
-				<form class="position-absolute my-auto" action="/notices/reg" method="GET" style="right: 0px;">
-				  	<input class="btn btn-primary" type="button" id="writebutton" value="글쓰기">
-				</form>
+				<div class="position-absolute my-auto" style="right: 0px;">
+				  	<a class="btn btn-primary" href="/notices/reg" role="buuton">글쓰기</a>
+				</div>
 			</nav>
 		</article>
 	</main>
