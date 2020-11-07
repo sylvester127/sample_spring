@@ -29,5 +29,5 @@ public interface NoticeMapper {
     public int insertFile(FileVO file);
     
     //파일 상세
-    public FileVO getfile(int boardNum);
+    public FileVO getFile(int boardNum);
 }

@@ -52,7 +52,7 @@
 	    VALUES	(#fileNum, #{boardNum}, #{filePath})
 	</insert>
 	
-	<select id="getfile" parameterType="int" resultType="com.example.demo.domain.FileVO">
+	<select id="getFile" parameterType="int" resultType="com.example.demo.domain.FileVO">
 	    SELECT
 	        *
 	    FROM FILES
