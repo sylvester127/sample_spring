@@ -79,7 +79,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "redirect:login";
+		return "redirect:/";
 	}
 
 }

@@ -14,7 +14,8 @@
 			<h4 class="my-auto">${sessionScope.id}님의 페이지</h4>
 			
 			<form class="my-auto" action="/members/${id}/session" method="POST">
-				<button class="ml-3 btn btn-primary btn-sm" type="submit" value="DELETE">로그아웃</button>
+				<input type="hidden" name="_method" value="DELETE" />
+				<button class="ml-3 btn btn-primary btn-sm" type="submit">로그아웃</button>
 			</form>
 		</div>
 		

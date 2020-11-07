@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @Configuration
 @EnableTransactionManagement
@@ -44,5 +45,14 @@ public class MybatisConfiguration {
     public SqlSessionTemplate getSqlSessionFaSessionTemplate(SqlSessionFactory sqlSessionFactory){
         SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
         return sqlSessionTemplate;
+    }
+    
+    /**
+     * HiddenHttpMethodFilter  
+     */
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+        HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
+        return filter;
     }
 }
