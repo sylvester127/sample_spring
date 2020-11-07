@@ -46,9 +46,8 @@ public class NoticeController {
 
 	@ResponseBody
 	@PostMapping("/reg")
-	private int reg(NoticeVO notice, @RequestParam("files") MultipartFile[] files)
-			throws Exception {
-		int result = service.addNotice(notice, files);		
+	private int reg(NoticeVO notice, @RequestParam("files") MultipartFile[] files) throws Exception {
+		int result = service.addNotice(notice, files);
 		
 		return result;
 	}
