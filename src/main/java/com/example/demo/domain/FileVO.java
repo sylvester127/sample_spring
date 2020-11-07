@@ -1,44 +1,46 @@
 package com.example.demo.domain;
 
 public class FileVO {
-	 
-    private int fileNum;
-    private int boardNum;
-    private String saveFileName;   //저장할 파일
-    private String realFileName;  //실제 파일
-    private String fileUrl;
-    
+
+	private int fileNum; 			// 파일번호
+	private int noticeNum; 			// 게시글 번호
+	private String filePath;		// 파일의 저장 경로
+	
+	public FileVO() {
+		super();
+	}
+
+	public FileVO(int fileNum, int noticeNum, String filePath) {
+		super();
+		this.fileNum = fileNum;
+		this.noticeNum = noticeNum;
+		this.filePath = filePath;
+	}
+
 	public int getFileNum() {
 		return fileNum;
 	}
+
 	public void setFileNum(int fileNum) {
 		this.fileNum = fileNum;
 	}
+
 	public int getBoardNum() {
-		return boardNum;
+		return noticeNum;
 	}
+
 	public void setBoardNum(int boardNum) {
-		this.boardNum = boardNum;
+		this.noticeNum = boardNum;
 	}
-	public String getSaveFileName() {
-		return saveFileName;
-	}
-	public void setSaveFileName(String saveFileName) {
-		this.saveFileName = saveFileName;
-	}
-	public String getRealFileName() {
-		return realFileName;
-	}
-	public void setRealFileName(String realFileName) {
-		this.realFileName = realFileName;
-	}
+
 	public String getFileUrl() {
-		return fileUrl;
+		return filePath;
 	}
+
 	public void setFileUrl(String fileUrl) {
-		this.fileUrl = fileUrl;
-	}	
-	
+		this.filePath = fileUrl;
+	}
+
 	public boolean isEmpty() {
 		return false;
 	}

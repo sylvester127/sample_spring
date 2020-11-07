@@ -29,9 +29,7 @@ CREATE TABLE BOARD(
 CREATE TABLE FILES(
 	FileNum int IDENTITY,
 	BoardNum int,
-	SaveFileName varchar(200),
-	RealFileName varchar(300),
-	FileUrl varchar(500),
+	FilePath varchar(500),
 	PRIMARY KEY(FileNum)
 );
 
