@@ -50,7 +50,7 @@
 			    	<tbody>
 				    	<c:forEach var="notice" items="${list}">
 						    <tr align = "center">
-					  			<td onClick="location.href='/detail/${notice.boardNum}'"><b>${notice.boardNum}</b></td>
+					  			<td onClick="location.href='/notices/${notice.boardNum}'"><b>${notice.boardNum}</b></td>
 					  			<td>${notice.reg_date}</td>
 					  			<td>${notice.writer}</td>
 					        	<td align = "left">${notice.title}</td>
