@@ -9,6 +9,12 @@ public class FileVO {
 	public FileVO() {
 		super();
 	}
+	
+	public FileVO(int noticeNum, String filePath) {
+		super();
+		this.noticeNum = noticeNum;
+		this.filePath = filePath;
+	}
 
 	public FileVO(int fileNum, int noticeNum, String filePath) {
 		super();
@@ -25,23 +31,19 @@ public class FileVO {
 		this.fileNum = fileNum;
 	}
 
-	public int getBoardNum() {
+	public int getNoticeNum() {
 		return noticeNum;
 	}
 
-	public void setBoardNum(int boardNum) {
-		this.noticeNum = boardNum;
+	public void setNoticeNum(int noticeNum) {
+		this.noticeNum = noticeNum;
 	}
 
-	public String getFileUrl() {
+	public String getFilePath() {
 		return filePath;
 	}
 
-	public void setFileUrl(String fileUrl) {
-		this.filePath = fileUrl;
-	}
-
-	public boolean isEmpty() {
-		return false;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 }

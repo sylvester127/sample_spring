@@ -4,12 +4,11 @@
 
 <mapper namespace="com.example.demo.repository.NoticeMapper">
     <insert id="insertNotice" parameterType="com.example.demo.domain.NoticeVO" useGeneratedKeys="true" keyProperty="idx">
-        INSERT	INTO
-        BOARD	(TITLE, CONTENT, WRITER, BOARD_PASS, REG_DATE)
-        VALUES	(#{title}, #{content}, #{writer}, #{board_pass}, now())
-        
+        INSERT INTO
+        BOARD (TITLE, CONTENT, WRITER, BOARD_PASS, REG_DATE)
+        VALUES (#{title}, #{content}, #{writer}, #{board_pass}, now())
     </insert>
-
+	
     <select id="getNoticeList" resultType="com.example.demo.domain.NoticeVO">
         SELECT
             *
@@ -23,40 +22,40 @@
             *
         FROM BOARD
         WHERE
-            BoardNum = #{boardNum}
+            BoardNum = #{noticeNum}
     </select>
-
-
+	
     <update id="updateNotice" parameterType="com.example.demo.domain.NoticeVO">
-        UPDATE	BOARD
+        UPDATE BOARD
         SET
         <if test="title != null">
             Title = #{title}
         </if>
-        <if test="title != null and content != null">  </if>,
         <if test="content != null">
             CONTENT = #{content}
         </if>
-        WHERE	BoardNum = #{boardNum}
+        WHERE 
+        	BoardNum = #{noticeNum}
     </update>
-
+	
     <delete id="deleteNotice" parameterType="int">
-    	UPDATE	BOARD
-    	SET 	B_REMV_FLAG = 'Y'
-    	WHERE	BoardNum = #{boardNum}
+    	UPDATE BOARD
+    	SET B_REMV_FLAG = 'Y'
+    	WHERE 
+    		BoardNum = #{noticeNum}
     </delete>
-
+	
 	<insert id="insertFile" parameterType="com.example.demo.domain.FileVO">
-	    INSERT	INTO
-	    FILES	(FILENUM, BOARDNUM, FILEPATH)
-	    VALUES	(#fileNum, #{boardNum}, #{filePath})
+	    INSERT INTO
+	    FILE (NOTICENUM, FILEPATH)
+	    VALUES (#{noticeNum}, #{filePath})
 	</insert>
 	
-	<select id="getFile" parameterType="int" resultType="com.example.demo.domain.FileVO">
+	<select id="getFileList" parameterType="int" resultType="com.example.demo.domain.FileVO">
 	    SELECT
 	        *
-	    FROM FILES
+	    FROM FILE
 	    WHERE
-	        FILENUM = #{fileNum}
+	        NOTICENUM = #{noticeNum}
 	</select>
 </mapper>

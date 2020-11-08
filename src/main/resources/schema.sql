@@ -26,9 +26,9 @@ CREATE TABLE BOARD(
 	PRIMARY KEY(BoardNum)
 );
 
-CREATE TABLE FILES(
+CREATE TABLE FILE(
 	FileNum int IDENTITY,
-	BoardNum int,
+	NoticeNum int,
 	FilePath varchar(500),
 	PRIMARY KEY(FileNum)
 );
