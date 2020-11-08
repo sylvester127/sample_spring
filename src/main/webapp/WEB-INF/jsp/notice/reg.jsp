@@ -23,7 +23,7 @@
 			<div class="form-group">
 				<label>작성자</label>
 				<input type="text" class="form-control-plaintext" id="writer" name="writer"
-				minlength="2" maxlength="80" size="100" value="${sessionScope.userId}" readonly>
+				minlength="2" maxlength="80" size="100" value="${sessionScope.id}" readonly>
 			</div>
 			
 			<div class="form-group">
