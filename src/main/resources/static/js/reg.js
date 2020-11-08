@@ -42,6 +42,7 @@ $(function() {
 			filesSize += files[i].size;
 
 			if(filesSize > 20 * 1024 * 1024) {
+				filesSize -= files[i].size;
 				alert('첨부파일은 20mb를 넘을 수 없습니다.');
 				return;
 			}
@@ -59,6 +60,7 @@ $(function() {
 	deleteBtns.on('click', '#delete-file', function() {
 		let index = $(this).parent().parent().index();
 		
+		filesSize -= fileList[index].size;
 		fileList.splice(index, 1);
 		
 		showComments();
@@ -66,11 +68,12 @@ $(function() {
 	
 /*==============================================================================================*/
 	saveBtn.click(function(e) {
+		let files = fileList;
 		let form = $("#notice")[0];
 		let data = new FormData(form);
 		
-		for(let i = 0; i < fileList.length; i++) {
-			data.append('files', fileList);
+		for (let i = 0; i < fileList.length; i++) {
+			data.append('files', files[i]);
 		}
 		
 		$.post({
